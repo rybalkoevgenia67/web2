@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отчёт по лабораторной работе №2</title>
+    <title>Лабораторная работа №2 | HTTP-запросы</title>
     <style>
         * {
             margin: 0;
@@ -12,105 +12,96 @@
         }
 
         body {
-            background: #f0f2f5;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.5;
-            color: #1a2632;
+            color: #4a3b44;
             padding: 2rem 1rem;
         }
 
-        .container {
+        .page {
             max-width: 1100px;
             margin: 0 auto;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
-            padding: 2rem 2rem 2rem 2rem;
         }
 
-        .author-info {
-            background: #f8fafc;
-            border-left: 4px solid #9aaebf;
-            padding: 0.8rem 1.2rem;
-            margin-bottom: 1.8rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            color: #2c4b6c;
+        .hero-strip {
+            background: #fff7f9;
+            border-bottom: 1px solid #fae2ec;
+            padding: 1.2rem 2rem;
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
-            align-items: baseline;
-            gap: 0.5rem;
-        }
-
-        .author-name {
-            font-weight: 500;
-            color: #1e2f3e;
-        }
-
-        .author-login {
-            font-family: monospace;
-            background: #eef2f7;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        h1 {
-            font-size: 1.9rem;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-            border-left: 4px solid #9aaebf;
-            padding-left: 1rem;
-            margin-bottom: 0.5rem;
-            color: #1e2f3e;
-        }
-
-        .subhead {
-            color: #5c6f87;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-bottom: 2rem;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 1rem;
-            font-size: 0.9rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
         }
 
-        h2 {
-            font-size: 1.45rem;
+        .student-badge {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .student-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #b28ba0;
+            letter-spacing: -0.2px;
+        }
+
+        .student-group {
+            font-size: 0.8rem;
+            color: #c9a3b5;
+            font-family: monospace;
+        }
+
+        .login-pill {
+            background: #fef0f5;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #b28ba0;
             font-weight: 500;
-            margin-top: 2rem;
+            border: 1px solid #f8dfe9;
+        }
+
+        .report-title {
+            text-align: right;
+        }
+
+        .report-title h1 {
+            font-size: 1.6rem;
+            font-weight: 550;
+            color: #c9a3b5;
+            letter-spacing: -0.3px;
+        }
+
+        .block-card {
+            background: #ffffff;
+            border: 1px solid #fae8ef;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: 0.1s ease;
+        }
+
+        .block-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #c2a0b2;
             margin-bottom: 1rem;
-            color: #2c3e4e;
-            background: #f0f4f9;
-            display: inline-block;
-            padding: 0.2rem 0.9rem;
-            border-radius: 30px;
-        }
-
-        h3 {
-            font-size: 1.15rem;
-            font-weight: 500;
-            margin: 1.5rem 0 0.75rem 0;
-            color: #2c3e50;
-            border-left: 3px solid #cbd5e1;
+            border-left: 4px solid #f3cfdf;
             padding-left: 0.8rem;
         }
 
-        .card {
-            background: #ffffff;
-            border: 1px solid #edf2f7;
-            border-radius: 18px;
-            padding: 1rem 1.5rem;
-            margin: 1.2rem 0;
-        }
-
         .cmd-block {
-            background: #f7f9fc;
-            border-radius: 14px;
+            background: #fef9fc;
+            border: 1px solid #fae2ec;
             padding: 0.9rem 1.2rem;
             font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
             font-size: 0.85rem;
-            color: #1e2f3a;
-            border: 1px solid #e9edf2;
+            color: #9e7b8e;
             overflow-x: auto;
             white-space: pre-wrap;
             word-break: break-word;
@@ -118,244 +109,289 @@
         }
 
         .http-request {
-            background: #eef3fc;
-            border-left: 4px solid #8c9aa8;
+            background: #fdf5f9;
+            border-left: 4px solid #ebc4d4;
         }
 
-        .screenshot-line {
-            background: #f5f7fa;
-            border-radius: 16px;
-            padding: 0.7rem 1.2rem;
-            margin: 1rem 0;
+        .screenshot-item {
+            background: #fefafc;
+            border: 1px solid #fae2ec;
+            padding: 0.7rem 1rem;
+            margin: 0.8rem 0;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            border: 1px solid #e9edf2;
-            font-size: 0.85rem;
-            color: #2c4b6c;
+            gap: 0.6rem;
         }
 
-        .screenshot-line img {
-            max-width: 100%;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            background: #fff;
+        /* стандартный размер для всех фото */
+        .screenshot-item img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border: 1px solid #f5dfe8;
+            background: white;
         }
 
-        .badge-light {
-            background: #e4e9f0;
-            color: #2c3e50;
-            font-size: 0.7rem;
-            font-weight: 500;
-            padding: 0.2rem 0.7rem;
-            border-radius: 30px;
+        /* увеличенные фото: 6, 1.1, 11 */
+        .screenshot-item img.large {
+            max-width: 700px;
+        }
+
+        .badge-pink {
+            background: #fef3f7;
+            color: #c2a0b2;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.6rem;
             font-family: monospace;
             display: inline-block;
+            border: 0.5px solid #f9e2eb;
+        }
+
+        .desc-text {
+            font-size: 0.85rem;
+            color: #6f5a66;
+            margin-top: 0.2rem;
         }
 
         hr {
-            margin: 2rem 0 1rem;
+            margin: 1rem 0;
             border: none;
-            border-top: 1px solid #eef2f8;
+            border-top: 1px solid #fae2ec;
         }
 
-        .note-text {
-            margin: 0.5rem 0;
-            color: #2c3e4e;
+        .footer {
+            text-align: center;
+            padding: 1.2rem;
+            background: #fef8fa;
+            border-top: 1px solid #fae2ec;
+            font-size: 0.7rem;
+            color: #cfb1c1;
+            margin-top: 1rem;
         }
 
         @media (max-width: 700px) {
-            .container {
-                padding: 1.2rem;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-            .author-info {
+            .hero-strip {
                 flex-direction: column;
-                gap: 0.3rem;
+                text-align: center;
             }
+            .report-title {
+                text-align: center;
+            }
+            .screenshot-item img {
+                max-width: 100%;
+            }
+            .screenshot-item img.large {
+                max-width: 100%;
+            }
+        }
+
+        strong {
+            color: #bc9aab;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- Блок с информацией об авторе -->
-    <div class="author-info">
-        <span class="author-name">Выполнил: Сладкомедов Ярослав, 23 ПМИ</span>
-        <span class="author-login">Логин: u82683</span>
-    </div>
-
-    <h1>Отчёт по лабораторной работе №2</h1>
-
-    <!-- Подготовка к выполнению -->
-    <h2>Подготовка к выполнению работы</h2>
-    <div class="card">
-        <p><strong>Содержимое локальной папки</strong><br>
-        В директории находятся все необходимые файлы: скриншоты, file.tar.gz, image.png, index.php, index.html.</p>
-        <div class="screenshot-line">
-            <img src="screenshots/1.png" alt="Содержимое папки laba2">
+<div class="page">
+    <!-- Верхняя панель -->
+    <div class="hero-strip">
+        <div class="student-badge">
+            <span class="student-name">Рыбалко Евгения</span>
+            <span class="student-group">23 ПМИ </span>
+        </div>
+        <div class="login-pill">
+            u82673
+        </div>
+        <div class="report-title">
+            <h1>Лабораторная работа №2</h1>
         </div>
     </div>
 
-    <!-- Инициализация Git и отправка на GitHub -->
-    <h2>Инициализация Git и отправка на GitHub</h2>
-    <div class="cmd-block">
-        git init<br>
-        git add .<br>
-        git commit -m "первая версия"<br>
-        git branch -M main<br>
-        git remote add origin https://github.com/sladkomedovyaroslav/numb2 <br>
-        git push -u origin main
+    <!-- Подготовка к выполнению работы -->
+    <div class="block-card">
+        <div class="block-title">📁 Подготовка к выполнению работы</div>
+        <div class="desc-text"><strong>Содержимое локальной папки:</strong> папка со скриншотами (screenshots), file.tar.gz, image.png, index.php, index.html.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/1.png" alt="Содержимое папки laba2">
+            <span class="badge-pink">рис. 1 — содержимое папки</span>
+        </div>
+        <div class="desc-text" style="margin-top: 0.5rem;"><strong>Создание файла index.html:</strong></div>
+        <div class="screenshot-item">
+            <img src="screenshots/1.1.png" alt="Создание файла index.html" class="large">
+            <span class="badge-pink">рис. 1.1 — создание index.html</span>
+        </div>
     </div>
-    <p>Локальный репозиторий создан, все файлы добавлены, создан коммит. После связывания с удалённым репозиторием изменения успешно отправлены на GitHub.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/2.png" alt="Отправка файлов на GitHub">
+
+    <!-- Перенос файлов с локальной папки в репозиторий с помощью Git -->
+    <div class="block-card">
+        <div class="block-title">📤 Перенос файлов с локальной папки в репозиторий с помощью Git</div>
+        <div class="desc-text">Локальный репозиторий создан, все файлы перенесены при помощи Git Bash в репозиторий на Github.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/2.png" alt="Перенос файлов в репозиторий с помощью Git">
+            <span class="badge-pink">рис. 2 — git push</span>
+        </div>
     </div>
 
     <!-- Клонирование репозитория на сервер -->
-    <h2>Клонирование репозитория на сервер</h2>
-    <div class="cmd-block">
-        git clone https://github.com/sladkomedovyaroslav/numb2 numb2<br>
-    </div>
-    <p>Репозиторий склонирован в домашнюю директорию, создан каталог ~/www/numb2, файлы скопированы в веб-доступное место.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/3.png" alt="Клонирование репозитория на сервер">
+    <div class="block-card">
+        <div class="block-title">📥 Клонирование репозитория на сервер</div>
+        <div class="cmd-block">
+            git clone https://github.com/rybalkoevgenia67/web2 web2
+        </div>
+        <div class="desc-text">Репозиторий склонирован в домашнюю директорию, создан каталог ~/www/web2, файлы скопированы в папку web2.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/3.png" alt="Клонирование репозитория на сервер">
+            <span class="badge-pink">рис. 3 — git clone</span>
+        </div>
     </div>
 
-    <!-- Настройка PuTTY для подключения -->
-    <h2>Настройка PuTTY для подключения</h2>
-    <p>Для отправки запросов используется PuTTY в режиме Raw (прямое TCP-соединение). Адрес: u82683.kubsu-dev.ru, порт 80.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/4.png" alt="Конфигурация PuTTY">
-    </div>
-    <p>После открытия соединения появляется пустое окно, готовое для вставки HTTP-запросов (правая кнопка мыши).</p>
-    <div class="screenshot-line">
-        <img src="screenshots/5.png" alt="Окно PuTTY ожидает запрос">
+    <!-- Настройка PuTTY -->
+    <div class="block-card">
+        <div class="block-title">🔌 Настройка PuTTY для подключения</div>
+        <div class="desc-text">Для отправки запросов используется PuTTY в режиме Raw (прямое TCP-соединение). Адрес: u82673.kubsu-dev.ru, порт 80.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/4.png" alt="Конфигурация PuTTY">
+            <span class="badge-pink">рис. 4 — конфигурация PuTTY</span>
+        </div>
     </div>
 
     <!-- Пункт 1 -->
-    <h2>Пункт 1. Получить главную страницу методом GET в протоколе HTTP/1.0</h2>
-    <div class="cmd-block http-request">
-        GET / HTTP/1.0
-    </div>
-    <p><strong>Что делает:</strong> Запрос корневой директории сайта по протоколу HTTP/1.0. Сервер возвращает содержимое, которое в данном случае является стандартной страницей Apache (так как в корне нет индексного файла).</p>
-    <p><strong>Результат:</strong><br>
-    Статус: HTTP/1.1 200 OK – запрос выполнен успешно.<br>
-    Заголовки: Server: Apache/2.4.58 (Ubuntu), Content-Length: 10671, Content-Type: text/html; charset=UTF-8.<br>
-    Тело ответа содержит стандартную страницу-заглушку Apache2 Ubuntu Default Page.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/6.png" alt="GET запрос главной страницы HTTP/1.0">
+    <div class="block-card">
+        <div class="block-title">1. Получить главную страницу методом GET в протоколе HTTP/1.0</div>
+        <div class="cmd-block http-request">
+            GET / HTTP/1.0
+        </div>
+        <div class="desc-text"><strong>Что делает:</strong> Запрос корневой директории сайта по протоколу HTTP/1.0. Сервер возвращает содержимое, которое в данном случае является стандартной страницей Apache (так как в корне нет индексного файла).</div>
+        <div class="desc-text"><strong>Результат:</strong><br>
+        Статус: HTTP/1.1 200 OK – запрос выполнен успешно.<br>
+        Заголовки: Server: Apache/2.4.58 (Ubuntu), Content-Length: 10671, Content-Type: text/html; charset=UTF-8.<br>
+        Тело ответа содержит стандартную страницу-заглушку Apache2 Ubuntu Default Page.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/6.png" alt="GET запрос главной страницы HTTP/1.0" class="large">
+            <span class="badge-pink">рис. 6 — ответ сервера</span>
+        </div>
     </div>
 
     <!-- Пункт 2 -->
-    <h2>Пункт 2. Получить внутреннюю страницу методом GET в протоколе HTTP/1.1</h2>
-    <div class="cmd-block http-request">
-        GET /numb2/index.php HTTP/1.1<br>
-        Host: u82683.kubsu-dev.ru<br>
-        Connection: close
-    </div>
-    <p><strong>Что делает:</strong> Запрашивает файл index.php из каталога /numb2/. Скрипт специально настроен так, что возвращает статус 404, но при этом выполняет код и генерирует тело ответа.</p>
-    <p><strong>Результат:</strong><br>
-    Статус: HTTP/1.1 404 Not Found – задан самим скриптом.<br>
-    Заголовок Content-Type: text/html; charset=UTF-8.<br>
-    Тело ответа содержит вывод скрипта: Array ( ) Привет, мир! (пустой массив $_POST и строка).<br>
-    Примечание: статус 404 не мешает получению содержимого – задание требует сам факт ответа и его анализ.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/7.png" alt="GET запрос внутренней страницы">
+    <div class="block-card">
+        <div class="block-title">2. Получить внутреннюю страницу методом GET в протоколе HTTP/1.1</div>
+        <div class="cmd-block http-request">
+            GET /web2/index.php HTTP/1.1<br>
+            Host: u82673.kubsu-dev.ru<br>
+            Connection: close
+        </div>
+        <div class="desc-text"><strong>Что делает:</strong> Запрашивает файл index.php из каталога /web2/. Скрипт специально настроен так, что возвращает статус 404, но при этом выполняет код и генерирует тело ответа.</div>
+        <div class="desc-text"><strong>Результат:</strong><br>
+        Статус: HTTP/1.1 404 Not Found – задан самим скриптом.<br>
+        Заголовок Content-Type: text/html; charset=UTF-8.<br>
+        Тело ответа содержит вывод скрипта: Array ( ) Привет, мир! (пустой массив $_POST и строка).<br>
+        Примечание: статус 404 не мешает получению содержимого – задание требует сам факт ответа и его анализ.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/7.png" alt="GET запрос внутренней страницы">
+            <span class="badge-pink">рис. 7 — запрос index.php</span>
+        </div>
     </div>
 
     <!-- Пункт 3 -->
-    <h2>Пункт 3. Определить размер файла file.tar.gz, не скачивая его</h2>
-    <div class="cmd-block http-request">
-        HEAD /numb2/file.tar.gz HTTP/1.1<br>
-        Host: u82683.kubsu-dev.ru<br>
-        Connection: close
-    </div>
-    <p><strong>Что делает:</strong> Метод HEAD возвращает только заголовки, без тела. Позволяет узнать размер файла из поля Content-Length.</p>
-    <p><strong>Результат:</strong><br>
-    Статус: HTTP/1.1 200 OK – файл существует.<br>
-    Заголовок Content-Length: 11335 – размер файла в байтах.<br>
-    Тип файла: Content-Type: application/x-gzip.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/8.png" alt="HEAD запрос для определения размера file.tar.gz">
+    <div class="block-card">
+        <div class="block-title">3. Определить размер файла file.tar.gz, не скачивая его</div>
+        <div class="cmd-block http-request">
+            HEAD /web2/file.tar.gz HTTP/1.1<br>
+            Host: u82673.kubsu-dev.ru<br>
+            Connection: close
+        </div>
+        <div class="desc-text"><strong>Что делает:</strong> Метод HEAD возвращает только заголовки, без тела. Позволяет узнать размер файла из поля Content-Length.</div>
+        <div class="desc-text"><strong>Результат:</strong><br>
+        Статус: HTTP/1.1 200 OK – файл существует.<br>
+        Заголовок Content-Length: 11335 – размер файла в байтах.<br>
+        Тип файла: Content-Type: application/x-gzip.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/8.png" alt="HEAD запрос для определения размера file.tar.gz">
+            <span class="badge-pink">рис. 8 — размер file.tar.gz</span>
+        </div>
     </div>
 
     <!-- Пункт 4 -->
-    <h2>Пункт 4. Определить медиатип ресурса /image.png</h2>
-    <div class="cmd-block http-request">
-        HEAD /numb2/image.png HTTP/1.1<br>
-        Host: u82683.kubsu-dev.ru<br>
-        Connection: close
-    </div>
-    <p><strong>Что делает:</strong> Аналогично пункту 3, определяем MIME-тип изображения.</p>
-    <p><strong>Результат:</strong><br>
-    Статус: HTTP/1.1 200 OK.<br>
-    Заголовок Content-Type: image/png – медиатип PNG.<br>
-    Размер: Content-Length: 10506 байт.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/9.png" alt="HEAD запрос для определения медиатипа image.png">
+    <div class="block-card">
+        <div class="block-title">4. Определить медиатип ресурса /image.png</div>
+        <div class="cmd-block http-request">
+            HEAD /web2/image.png HTTP/1.1<br>
+            Host: u82673.kubsu-dev.ru<br>
+            Connection: close
+        </div>
+        <div class="desc-text"><strong>Что делает:</strong> Аналогично пункту 3, определяем MIME-тип изображения.</div>
+        <div class="desc-text"><strong>Результат:</strong><br>
+        Статус: HTTP/1.1 200 OK.<br>
+        Заголовок Content-Type: image/png – медиатип PNG.<br>
+        Размер: Content-Length: 10506 байт.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/9.png" alt="HEAD запрос для определения медиатипа image.png">
+            <span class="badge-pink">рис. 9 — MIME-тип PNG</span>
+        </div>
     </div>
 
     <!-- Пункт 5 -->
-    <h2>Пункт 5. Отправить комментарий на сервер по адресу /index.php (POST)</h2>
-    <div class="cmd-block http-request">
-        POST /numb2/index.php HTTP/1.1<br>
-        Host: u82683.kubsu-dev.ru<br>
-        Content-Type: application/x-www-form-urlencoded<br>
-        Content-Length: 12<br>
-        Connection: close<br><br>
-        comment=Hello
-    </div>
-    <p><strong>Тело запроса:</strong> comment=Hello (длина 12 байт).</p>
-    <p><strong>Что делает:</strong> Отправляет POST-данные (имитация формы) на index.php. Скрипт возвращает статус 404 (задано в коде), но выводит содержимое массива $_POST.</p>
-    <p><strong>Результат:</strong><br>
-    Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
-    Заголовок Content-Type: text/html; charset=UTF-8.<br>
-    Тело ответа: Array ( [comment] => Hell ) Привет, мир! – значение поля comment частично отобразилось (обрезано из-за особенностей вывода).</p>
-    <div class="screenshot-line">
-        <img src="screenshots/10.png" alt="POST запрос с комментарием">
+    <div class="block-card">
+        <div class="block-title">5. Отправить комментарий на сервер по адресу /index.php (POST)</div>
+        <div class="cmd-block http-request">
+            POST /web2/index.php HTTP/1.1<br>
+            Host: u82673.kubsu-dev.ru<br>
+            Content-Type: application/x-www-form-urlencoded<br>
+            Content-Length: 13<br>
+            Connection: close<br><br>
+            comment=Hello
+        </div>
+        <div class="desc-text"><strong>Тело запроса:</strong> comment=Hello (длина 13 байт).</div>
+        <div class="desc-text"><strong>Что делает:</strong> Отправляет POST-данные (имитация формы) на index.php. Скрипт возвращает статус 404 (задано в коде), но выводит содержимое массива $_POST.</div>
+        <div class="desc-text"><strong>Результат:</strong><br>
+        Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
+        Заголовок Content-Type: text/html; charset=UTF-8.<br>
+        Тело ответа: Array ( [comment] => Hello ) Привет, мир! – значение поля comment отобразилось корректно.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/10.png" alt="POST запрос с комментарием">
+            <span class="badge-pink">рис. 10 — POST запрос</span>
+        </div>
     </div>
 
     <!-- Пункт 6 -->
-    <h2>Пункт 6. Получить первые 100 байт файла /file.tar.gz</h2>
-    <div class="cmd-block http-request">
-        GET /numb2/file.tar.gz HTTP/1.1<br>
-        Host: u82683.kubsu-dev.ru<br>
-        Range: bytes=0-99<br>
-        Connection: close
-    </div>
-    <p><strong>Что делает:</strong> Заголовок Range запрашивает только указанный диапазон байт – первые 100 байт архива.</p>
-    <p><strong>Результат:</strong><br>
-    Статус: HTTP/1.1 206 Partial Content – частичное содержимое.<br>
-    Заголовок Content-Range: bytes 0-99/11335.<br>
-    Content-Length: 100 – длина переданных данных.<br>
-    Тело содержит первые 100 байт файла (бинарные данные, отображаемые как нечитаемые символы).</p>
-    <div class="screenshot-line">
-        <img src="screenshots/11.png" alt="GET запрос с Range для первых 100 байт">
+    <div class="block-card">
+        <div class="block-title">6. Получить первые 100 байт файла /file.tar.gz</div>
+        <div class="cmd-block http-request">
+            GET /web2/file.tar.gz HTTP/1.1<br>
+            Host: u82673.kubsu-dev.ru<br>
+            Range: bytes=0-99<br>
+            Connection: close
+        </div>
+        <div class="desc-text"><strong>Что делает:</strong> Заголовок Range запрашивает только указанный диапазон байт – первые 100 байт архива.</div>
+        <div class="desc-text"><strong>Результат:</strong><br>
+        Статус: HTTP/1.1 206 Partial Content – частичное содержимое.<br>
+        Заголовок Content-Range: bytes 0-99/11335.<br>
+        Content-Length: 100 – длина переданных данных.<br>
+        Тело содержит первые 100 байт файла (бинарные данные, отображаемые как нечитаемые символы).</div>
+        <div class="screenshot-item">
+            <img src="screenshots/11.png" alt="GET запрос с Range для первых 100 байт" class="large">
+            <span class="badge-pink">рис. 11 — Range-запрос</span>
+        </div>
     </div>
 
     <!-- Пункт 7 -->
-    <h2>Пункт 7. Определить кодировку ресурса /index.php</h2>
-    <div class="cmd-block http-request">
-        HEAD /numb2/index.php HTTP/1.1<br>
-        Host: u82683.kubsu-dev.ru<br>
-        Connection: close
-    </div>
-    <p><strong>Что делает:</strong> Запрос HEAD для получения только заголовков. Позволяет узнать кодировку из поля Content-Type.</p>
-    <p><strong>Результат:</strong><br>
-    Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
-    Заголовок Content-Type: text/html; charset=UTF-8 – кодировка UTF-8 указана явно.</p>
-    <div class="screenshot-line">
-        <img src="screenshots/12.png" alt="HEAD запрос для определения кодировки">
+    <div class="block-card">
+        <div class="block-title">7. Определить кодировку ресурса /index.php</div>
+        <div class="cmd-block http-request">
+            HEAD /web2/index.php HTTP/1.1<br>
+            Host: u82673.kubsu-dev.ru<br>
+            Connection: close
+        </div>
+        <div class="desc-text"><strong>Что делает:</strong> Запрос HEAD для получения только заголовков. Позволяет узнать кодировку из поля Content-Type.</div>
+        <div class="desc-text"><strong>Результат:</strong><br>
+        Статус: HTTP/1.1 404 Not Found (задан скриптом).<br>
+        Заголовок Content-Type: text/html; charset=UTF-8 – кодировка UTF-8 указана явно.</div>
+        <div class="screenshot-item">
+            <img src="screenshots/12.png" alt="HEAD запрос для определения кодировки">
+            <span class="badge-pink">рис. 12 — кодировка UTF-8</span>
+        </div>
     </div>
 
-    <hr>
-    <div style="font-size: 0.75rem; color: #6b7c93; text-align: center; padding-top: 1rem;">
-        Сладкомедов, 23 ПМИ
-    </div>
 </div>
 </body>
 </html>
